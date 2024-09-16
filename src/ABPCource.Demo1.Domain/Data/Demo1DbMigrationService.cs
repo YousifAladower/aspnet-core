@@ -1,12 +1,12 @@
-﻿using System;
+﻿using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Logging.Abstractions;
 using Volo.Abp.Data;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.Identity;
@@ -20,9 +20,11 @@ public class Demo1DbMigrationService : ITransientDependency
     public ILogger<Demo1DbMigrationService> Logger { get; set; }
 
     private readonly IDataSeeder _dataSeeder;
+    #region files
     private readonly IEnumerable<IDemo1DbSchemaMigrator> _dbSchemaMigrators;
     private readonly ITenantRepository _tenantRepository;
     private readonly ICurrentTenant _currentTenant;
+    #endregion
 
     public Demo1DbMigrationService(
         IDataSeeder dataSeeder,
